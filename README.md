@@ -1,6 +1,6 @@
 # 🔫 Hazardous Equipment Detection System using YOLO & OpenCV
 
-This project is a **web-based detection system** that uses the YOLOv8 deep learning model and OpenCV to detect situations that contain weapons (e.g., guns, knives) in both **images and videos**. The system includes a **Flask web application** with user authentication, email confirmation, and password reset functionality.
+This project is a **web-based detection system** that uses the YOLO deep learning model and OpenCV to detect situations that contain weapons (e.g., guns, knives) in both **images and videos**. The system includes a **Flask web application** with user authentication, email confirmation, and password reset functionality.
 
 ---
 
@@ -18,7 +18,7 @@ This project is a **web-based detection system** that uses the YOLOv8 deep learn
 ## 🧠 Tech Stack
 
 - **Backend**: Python, Flask
-- **Detection**: [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
+- **Detection**: [Ultralytics YOLO](https://github.com/ultralytics/ultralytics)
 - **Frontend**: HTML, Jinja templates
 - **Database**: SQLite
 - **Authentication**: Flask-Login
