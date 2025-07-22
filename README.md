@@ -1,6 +1,6 @@
-# 🔫 Weapon Detection System using YOLO & OpenCV
+# 🔫 Hazardous Equipment Detection System using YOLO & OpenCV
 
-This project is a **web-based weapon detection system** that uses the YOLOv8 deep learning model and OpenCV to detect weapons (e.g., guns, knives) in both **images and videos**. The system includes a **Flask web application** with user authentication, email confirmation, and password reset functionality.
+This project is a **web-based detection system** that uses the YOLOv8 deep learning model and OpenCV to detect situations that contain weapons (e.g., guns, knives) in both **images and videos**. The system includes a **Flask web application** with user authentication, email confirmation, and password reset functionality.
 
 ---
 
