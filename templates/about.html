@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us - Weapon Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container">
+        <h1>Weapon Detection</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}" class="active">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('signup') }}">Sign Up</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+
+<main>
+<section class="about">
+  <h2>About Our Weapon Detection System</h2>
+  <p>
+    In today’s evolving security landscape, rapid and accurate identification of potential threats is paramount. Our Weapon Detection System harnesses the power of state-of-the-art AI technologies, specifically YOLOv10, to automatically detect weapons like guns and knives in both images and videos. This innovation is designed to aid law enforcement, security personnel, and organizations in safeguarding public spaces effectively.
+  </p>
+
+  <h3>Our Mission</h3>
+  <p>
+    Our mission is to significantly reduce security risks by delivering a fast, reliable, and scalable weapon detection platform. We aim to empower security teams with intelligent tools that help them respond swiftly and proactively, enhancing safety in schools, airports, event venues, and beyond.
+  </p>
+
+  <h3>How It Works</h3>
+  <p>
+    Leveraging the powerful YOLOv10 object detection model, our system processes images and videos to locate weapons in real time. By analyzing every frame with high precision, it identifies threats under various challenging conditions such as low light, cluttered backgrounds, and partial occlusion.
+  </p>
+
+  <h3>Key Features</h3>
+  <ul>
+    <li><strong>Real-Time Video and Image Analysis:</strong> Upload media files for on-demand threat detection.</li>
+    <li><strong>User-Friendly Interface:</strong> Seamless web platform designed for ease of use.</li>
+    <li><strong>Privacy-Focused:</strong> Data is processed securely with no unnecessary storage.</li>
+    <li><strong>Highly Accurate:</strong> Trained on diverse datasets ensuring robust detection.</li>
+    <li><strong>Flexible Deployment:</strong> Suitable for cloud or on-premise installations.</li>
+  </ul>
+
+  <h3>Impact & Use Cases</h3>
+  <p>
+    This system is ideal for enhancing surveillance in educational institutions, transport hubs, corporate offices, and public events. It assists law enforcement agencies with automated video review and supports smart security systems integrated into IoT devices.
+  </p>
+
+  <h3>Future Directions</h3>
+  <p>
+    We are committed to expanding our platform with additional threat categories, multi-language support, emergency alert integrations, and optimized edge-device deployment, ensuring that safety remains accessible and effective everywhere.
+  </p>
+
+  <h3>About the Team</h3>
+  <p>
+    Our multidisciplinary team combines expertise in machine learning, computer vision, cybersecurity, and user experience design. Together, we strive to build innovative solutions that contribute to safer communities worldwide.
+  </p>
+
+  <hr/>
+
+  <h3>Project Summary (English)</h3>
+  <p>
+    This project develops a weapon detection system using YOLOv10 to accurately identify firearms and knives in images and videos. It offers a scalable and efficient solution for improving security measures in various environments.
+  </p>
+
+  <h3>Proje Özeti (Türkçe)</h3>
+  <p>
+    Bu proje, YOLOv10 kullanarak görüntü ve videolarda silahları (tabanca, bıçak vb.) yüksek doğrulukla tespit eden bir sistem geliştirmektedir. Çeşitli ortamlarda güvenlik önlemlerini iyileştirmek için ölçeklenebilir ve etkin bir çözüm sunar.
+  </p>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Weapon Detection System | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home - Weapon Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container">
+    <h1>Weapon Detection</h1>
+    <nav>
+      <a href="{{ url_for('home') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+      <a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}">About</a>
+      <a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <h2>AI-powered Weapon Detection</h2>
+      <p>Upload an image or video and detect weapons using advanced AI technology.</p>
+      <a href="#upload" class="cta-btn">Detect Now</a>
+    </div>
+  </section>
+
+  <div class="example-images">
+    <div class="example-image-group">
+      <div class="example-image">
+        <p>Knife without detection</p>
+        <img src="{{ url_for('static', filename='images/knife.jpg') }}" alt="Knife without detection" />
+      </div>
+      <div class="example-image">
+        <p>Knife with detection</p>
+        <img src="{{ url_for('static', filename='images/detected_knife.png') }}" alt="Knife with detection" />
+      </div>
+    </div>
+    <div class="example-image-group">
+      <div class="example-image">
+        <p>Gun without detection</p>
+        <img src="{{ url_for('static', filename='images/gun.jpg') }}" alt="Gun without detection" />
+      </div>
+      <div class="example-image">
+        <p>Gun with detection</p>
+        <img src="{{ url_for('static', filename='images/detected_gun.png') }}" alt="Gun with detection" />
+      </div>
+    </div>
+  </div>
+
+  <p class="subheading">Select an image or video to detect weapons:</p>
+
+  <div class="file-upload-container" id="upload">
+    <input type="file" id="imageInput" accept="image/*, video/*" />
+    <button class="detect-btn" type="button" onclick="uploadMedia()">Detect</button>
+  </div>
+
+  <div id="status"></div>
+  <div id="imageResult" class="image-result"></div>
+  <canvas id="canvas" class="canvas-result" style="display:none;"></canvas>
+  <div id="detectionCards" class="detection-cards"></div>
+  <div class="download-btn-container">
+    <button id="downloadBtn" class="download-btn" style="display:none;">Download</button>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Weapon Detection System | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  ScrollReveal().reveal('.hero', { delay: 200 });
+  ScrollReveal().reveal('.container', { delay: 300 });
+  ScrollReveal().reveal('.file-upload-container', { delay: 400 });
+  ScrollReveal().reveal('.detection-cards', { delay: 500 });
+
+  function uploadMedia() {
+    let file = document.getElementById("imageInput").files[0];
+    if (!file) {
+      document.getElementById("status").innerText = "Please select a file.";
+      return;
+    }
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const imageResultContainer = document.getElementById("imageResult");
+    const existingVideoElement = imageResultContainer.querySelector('video');
+    if (existingVideoElement) existingVideoElement.remove();
+
+    document.getElementById("detectionCards").innerHTML = '';
+    document.getElementById("status").innerText = "Processing... Please wait.";
+    document.getElementById("downloadBtn").style.display = "none";
+    canvas.style.display = "none";
+
+    let formData = new FormData();
+    formData.append("file", file);
+
+    fetch('/predict', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("status").innerText = "";
+
+      if (data.video_url) {
+        const videoElement = document.createElement('video');
+        videoElement.src = data.video_url;
+        videoElement.controls = true;
+        videoElement.style.width = '100%';
+        imageResultContainer.appendChild(videoElement);
+
+        const downloadFileUrl = data.video_url;
+        const downloadBtn = document.getElementById("downloadBtn");
+        downloadBtn.innerText = "Download Video";
+        downloadBtn.style.display = "inline-block";
+        downloadBtn.onclick = function() {
+          const link = document.createElement("a");
+          link.href = downloadFileUrl;
+          link.download = "processed_video.mp4";
+          link.click();
+        };
+      } else {
+        let img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          canvas.style.display = "block";
+
+          data.forEach(prediction => {
+            const { x_center, y_center, width, height, confidence, name } = prediction;
+            const x = Math.round(x_center - width / 2);
+            const y = Math.round(y_center - height / 2);
+            const w = Math.round(width);
+            const h = Math.round(height);
+
+            ctx.beginPath();
+            ctx.rect(x, y, w, h);
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+            ctx.fillStyle = 'red';
+            ctx.font = '16px Arial';
+            ctx.fillText(`${name} (${Math.round(confidence * 100)}%)`, x, y - 5);
+          });
+
+          const downloadFileUrl = canvas.toDataURL("image/png");
+          const downloadBtn = document.getElementById("downloadBtn");
+          downloadBtn.innerText = "Download Image";
+          downloadBtn.style.display = "inline-block";
+          downloadBtn.onclick = function() {
+            const link = document.createElement("a");
+            link.href = downloadFileUrl;
+            link.download = "processed_image.png";
+            link.click();
+          };
+        };
+
+        displayDetectionCards(data);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("status").innerText = "Error processing the file.";
+    });
+  }
+
+  function displayDetectionCards(predictions) {
+    const detectionCardsDiv = document.getElementById("detectionCards");
+    detectionCardsDiv.innerHTML = '';
+    if (predictions && predictions.length > 0) {
+      predictions.forEach(prediction => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <h3>${prediction.name}</h3>
+          <p>Confidence: ${Math.round(prediction.confidence * 100)}%</p>
+        `;
+        detectionCardsDiv.appendChild(card);
+      });
+    }
+  }
+</script>
+
+</body>
+</html>

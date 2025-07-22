@@ -1,0 +1,636 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?t=st=1746722192~exp=1746725792~hmac=f8dee54d0b7edbaa21ec03ede1f7e8ad4c0f236d5d3d5d1e961aa783484530e5&w=1380')
+      no-repeat center center;
+  background-size: cover;
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #1f1f1f;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar nav a {
+  color: #b0b0b0;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+  color: #00aaff;
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?t=st=1746722192~exp=1746725792~hmac=f8dee54d0b7edbaa21ec03ede1f7e8ad4c0f236d5d3d5d1e961aa783484530e5&w=1380')
+      no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.hero h2 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.cta-btn {
+  background-color: #00aaff;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.25rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #0077cc;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Main Content */
+main {
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.subheading {
+  font-size: 1.125rem;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Example Images Section */
+.example-images {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.example-image-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.example-image {
+  text-align: center;
+  width: 48%;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.example-image:hover {
+  transform: scale(1.05);
+}
+
+.example-image img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+.example-image p {
+  font-size: 1.125rem;
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+/* File Upload Section */
+.file-upload-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+input[type='file'] {
+  padding: 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 2px solid #00aaff;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+button.detect-btn {
+  padding: 12px 25px;
+  background-color: #00aaff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+  max-width: 400px;
+  transition: background-color 0.3s ease;
+}
+
+button.detect-btn:hover {
+  background-color: #0077cc;
+}
+
+/* Status Message */
+#status {
+  font-size: 14px;
+  color: #d9534f;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Image Result (Canvas for detected image) */
+.image-result {
+  text-align: center;
+  margin-top: 20px;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 1px solid #444;
+  border-radius: 5px;
+}
+
+/* Detection Cards Section */
+.detection-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #333;
+  color: #e0e0e0;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card h3 {
+  font-size: 1.125rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.875rem;
+}
+
+/* Download Button Section */
+.download-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.download-btn {
+  padding: 12px 25px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.download-btn:hover {
+  background-color: #218838;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: #00aaff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #00aaff;
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  /* Adjusting button sizes for mobile screens */
+  .file-upload-container,
+  .download-btn-container {
+    width: 100%;
+  }
+
+  .file-upload-container input[type='file'],
+  .file-upload-container button {
+    width: 100%;
+  }
+
+  /* Make the buttons a little smaller on mobile */
+  .detect-btn,
+  .download-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  /* Example Images Section */
+  .example-images {
+    flex-direction: column;
+  }
+
+  .example-image {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Adjusting the cards on smaller screens */
+  .detection-cards {
+    flex-direction: column;
+  }
+
+  /* Ensure cards take up full width on mobile */
+  .card {
+    width: 100%;
+  }
+}
+
+/* Hover Effects - Optional for touch devices */
+@media (hover: hover) {
+  /* Ensure hover effects work only for devices that support hovering (desktops) */
+  .example-image:hover {
+    transform: scale(1.05);
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Auth Pages (Login & Signup) */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url('https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?t=st=1746722192~exp=1746725792~hmac=f8dee54d0b7edbaa21ec03ede1f7e8ad4c0f236d5d3d5d1e961aa783484530e5&w=1380')
+      center/cover no-repeat;
+  background-attachment: fixed;
+}
+
+.auth-container {
+  background-color: #1f1f1f;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.auth-subtitle {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 2px solid #333;
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+  font-size: 16px;
+}
+
+.auth-form input:focus {
+  border-color: #00aaff;
+  outline: none;
+  background-color: #333;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #0077cc;
+}
+
+.auth-switch {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.auth-switch a {
+  color: #00aaff;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Contact Page Styles */
+
+/* Container & layout */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #eee;
+}
+
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Contact Info Card */
+.contact-info {
+  flex: 1 1 300px;
+  background-color: #222;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+.contact-info h3 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #00aaff;
+}
+.contact-info p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+.contact-info a {
+  color: #00aaff;
+  text-decoration: none;
+}
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form */
+form.contact-form {
+  flex: 1 1 500px;
+  background-color: #222;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+form.contact-form h2 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #00aaff;
+}
+form.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+form.contact-form input,
+form.contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #333;
+  color: #eee;
+  font-size: 1rem;
+  resize: vertical;
+  transition: background-color 0.3s ease;
+}
+form.contact-form input:focus,
+form.contact-form textarea:focus {
+  background-color: #444;
+  outline: none;
+}
+form.contact-form button {
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+form.contact-form button:hover {
+  background-color: #0077cc;
+}
+
+/* Responsive for Contact Page */
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+  }
+  form.contact-form,
+  .contact-info {
+    flex: 1 1 100%;
+  }
+  form.contact-form button {
+    max-width: 100%;
+  }
+}
+
+
+/* Flash Messages */
+.flash-messages {
+  margin: 20px auto 40px;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.flash {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.flash.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.flash.error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.flash.warning {
+  background-color: #ffc107;
+  color: #222;
+}
+
+.flash.info {
+  background-color: #17a2b8;
+  color: white;
+}
